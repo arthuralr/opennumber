@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Redirecionador de Atendimento Inteligente",
+  "version": "1.0",
+  "description": "Captura o ID da sessão de atendimento diário e redireciona links intermediários para o chat correto.",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://app.suporte-ia.online/*",
+    "*://*.opennumber.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://app.suporte-ia.online/*/chat/*"],
+      "js": ["content_script.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
